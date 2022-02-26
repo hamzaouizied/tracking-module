@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\VisitorController;
+use App\Http\Controllers\TrackingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +22,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home',     [HomeController::class, 'index'])->name('home');
+Route::get('/visitors', [VisitorController::class, 'index'])->name('visitors');
+Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
+Route::post('/analytics/{tracking?}', [TrackingController::class, 'getDataFromLink'])->name('tracking');

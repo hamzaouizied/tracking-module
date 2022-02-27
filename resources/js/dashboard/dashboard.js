@@ -45,15 +45,37 @@ const data = {
 };
 
 /* 2A */
-let visitByBrowser       = $('#visitByBrowser').val();
-let uniqueVisitByBrowser = $('#uniqueVisitByBrowser').val();
+//chrome
+let visitByChrome        = $('#visitByChrome').val();
+let uniqueVisitByChrome  = $('#uniqueVisitByChrome').val()
+//firefox
+let visitByFirefox       = $('#visitByFirefox').val();
+let uniqueVisitByFirefox = $('#uniqueVisitByFirefox').val();
+//opera
+let visitByOpera         = $('#visitByOpera').val();
+let uniqueVisitByOpera   = $('#uniqueVisitByOpera').val();
+//safari
+let visitBySafari        = $('#visitBySafari').val();
+let uniqueVisitBySafari  = $('#uniqueVisitBySafari').val();
+//edge
+let visitByEdge          = $('#visitByEdge').val();
+let uniqueVisitByEdge    = $('#uniqueVisitByEdge').val();
+
 const data2 = {
-    labels: ['Unique_visitor_by_browser', 'Visit_by_browser'],
+    labels: ['unique visit chrome', 'unique visit firefox', 'unique visit opera', 'unique visit safari', 'unique visit edge',
+        'visit chrome', 'visit firefox', 'visit opera', 'visit safari', 'visit edge',
+    ],
     datasets: [{
-        data: [uniqueVisitByBrowser, visitByBrowser],
+        data: [uniqueVisitByChrome, uniqueVisitByFirefox, uniqueVisitByOpera, uniqueVisitBySafari, uniqueVisitByEdge,
+            visitByChrome, visitByFirefox, visitByOpera, visitBySafari, visitByEdge
+        ],
         backgroundColor: [
             primaryColor,
+            hightAlertColor,
+            lowAlertColor,
             secondaryColor,
+            lightPrimaryColor,
+            lightSecondaryColor
 
         ],
     }]
@@ -205,4 +227,80 @@ new Chart(ctx, {
     },
     data: data3,
 });
+
+//bar chart
+    let labelDate         = $('#labelDate').val();  /*label*/
+    let visitByDays       = $('#visitByDays').val();   /*bar male value*/
+    let uniqueVisitByDays = $('#uniqueVisitByDays').val(); /*bar female value*/
+    var barChartData = {
+        labels: jQuery.parseJSON(labelDate),
+        datasets: [{
+            label: 'Visit',
+            backgroundColor:secondaryColor,
+            data: jQuery.parseJSON(visitByDays),
+        },{
+            label: 'Unique visit',
+            backgroundColor:primaryColor,
+            data: jQuery.parseJSON(uniqueVisitByDays),
+        }]
+    };
+    var oneB = document.getElementById('one-d').getContext('2d');
+    new Chart(oneB, {
+        type: 'bar',
+        data: barChartData,
+        plugins: [ChartDataLabels],
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        boxWidth:10,
+                        font: {
+                            size: 10
+                        }
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Growth',
+                    fontFamily:numberFont,
+                    fontColor:lightPrimaryColor,
+                    fontStyle:'bold'
+                },
+                total: {
+                    fontSize:20,
+                    fontColor: darkStandard,
+                    fontFamily:numberFont,
+                },
+                datalabels: {
+                    formatter: (value) => {
+                        return value;
+                    },
+                    color: numberColor,
+                    font: function(context) {
+                        var width = context.chart.width;
+                        var responsiveSize = Math.round(width / 30);
+                        return {
+                            size: responsiveSize,
+                            family:numberFont
+                        };
+                    },
+                },
+            },
+            scales: {
+                x: {
+                    grid: {
+                        display: false,
+                    },
+                    stacked:true
+                },
+                y: {
+                    display: false,
+                    stacked:true,
+                }
+            }
+        },
+
+    });
 });

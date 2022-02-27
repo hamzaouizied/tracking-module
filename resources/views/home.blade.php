@@ -22,8 +22,16 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <input type="hidden" id="visitByBrowser" value="{{$visitByBrowser}}">
-            <input type="hidden" id="uniqueVisitByBrowser" value="{{$uniqueVisitByBrowser}}">
+            <input type="hidden" id="visitByChrome" value="{{$visitByChrome}}">
+            <input type="hidden" id="visitByFireFox" value="{{$visitByFireFox}}">
+            <input type="hidden" id="visitByOpera" value="{{$visitByOpera}}">
+            <input type="hidden" id="visitBySafari" value="{{$visitBySafari}}">
+            <input type="hidden" id="visitByEdge" value="{{$visitByEdge}}">
+            <input type="hidden" id="uniqueVisitByChrome" value="{{$uniqueVisitByChrome}}">
+            <input type="hidden" id="uniqueVisitByFirefox" value="{{$uniqueVisitByFirefox}}">
+            <input type="hidden" id="uniqueVisitByOpera" value="{{$uniqueVisitByOpera}}">
+            <input type="hidden" id="uniqueVisitBySafari" value="{{$uniqueVisitBySafari}}">
+            <input type="hidden" id="uniqueVisitBySafari" value="{{$uniqueVisitBySafari}}">
             <div>
               <canvas id="one-b" height="280" width="600"></canvas>
             </div>
@@ -47,9 +55,12 @@
     <div class="row p-5">
         <div class="card">
           <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+            <input type="hidden" id="visitByDays" value="{{json_encode($visitByDays)}}">
+            <input type="hidden" id="uniqueVisitByDays" value="{{json_encode($uniqueVisitByDays)}}">
+            <input type="hidden" id="labelDate" value="{{json_encode($labelDate)}}">
+            <div>
+              <canvas id="one-d" height="280" width="600"></canvas>
+            </div>
           </div>
         </div>
     </div>

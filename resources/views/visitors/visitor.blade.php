@@ -17,6 +17,7 @@
             <thead>
             <tr>
               <th width="40px">id</th>
+              <th width="40px">path</th>
               <th width="30px">user_agent</th>
               <th width="100px">ip</th>
               <th width="100px">device</th>

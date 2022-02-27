@@ -19,10 +19,12 @@ $(document).ready(function() {
         },
         columns: [
             { data: 'id', name: 'id'},
+            { data: 'path', name: 'path'},
             { data: 'user_agent', name: 'user_agent'},
             { data: 'ip', name: 'ip'},
             { data: 'device', name: 'device'},
             { data: 'country', name: 'country'},
+            { data: 'created_at', name: 'created_at'},
             { data: 'action', name: 'action', orderable: false, searchable: false, className: "text-center" },
         ]
     });

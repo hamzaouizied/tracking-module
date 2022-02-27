@@ -17,5 +17,6 @@ mix.js('resources/js/app.js', 'public/js')
         'resources/assets'
     ], "public/assets")
     .copyDirectory([
-        'resources/js/visitor/'
+        'resources/js/visitor/',
+        'resources/js/dashboard/'
     ], "public/js/");

@@ -21,8 +21,7 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home',     [HomeController::class, 'index'])->name('home');
-Route::get('/visitors', [VisitorController::class, 'index'])->name('visitors');
-Route::get('/tracking', [TrackingController::class, 'index'])->name('tracking');
-Route::post('/analytics/{tracking?}', [TrackingController::class, 'getDataFromLink'])->name('tracking');
+Route::get('/home',                   [HomeController::class,     'index'])->name('home');
+Route::get('/visitors',               [VisitorController::class,  'index'])->name('visitors');
+Route::get('/tracking',               [TrackingController::class, 'index'])->name('tracking');
+Route::get('/analytics/{tracking?}',  [TrackingController::class, 'getDataFromLink']);

@@ -18,9 +18,13 @@ class Visitor extends Model
      */
     protected $fillable = [
         'user_agent',
+        'browser',
         'ip',
         'device',
         'country',
+        'user_id',
+        'path',
+        'visitor'
     ];
 
 }

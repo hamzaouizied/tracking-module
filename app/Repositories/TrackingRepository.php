@@ -15,7 +15,7 @@ class TrackingRepository implements TrackingInterface
     public function showTrackingLink()
     {
         $user = Auth::user()->id;
-        $link = env('APP_URL').Crypt::encryptString($user);
+        $link = env('APP_URL').'analytics/'.Crypt::encryptString($user);
         return view('tracking.index',[
             'link' => $link
         ]);
@@ -23,12 +23,18 @@ class TrackingRepository implements TrackingInterface
 
     public function getDataFromLink($request)
     {
+
         Visitor::create([
             'user_agent' => $request->user_agent,
+            'browser'    => $request->browser,
             'ip'         => $request->ip,
             'device'     => $request->device,
             'country'    => $request->country,
+            'path'       => $request->path,
+            'visitor'    => $request->cookie,
+            'user_id'    => Crypt::decryptString($request->route('tracking'))
         ]);
+
         return response()->json([
             'code' => 200,
             'message' => 'visitor added.'

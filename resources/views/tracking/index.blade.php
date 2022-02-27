@@ -16,49 +16,62 @@
             <p class="card-text">Usage</p>
             <p class="card-text">
               <pre>
+                   $(document).ready(function () {
+                       /*******get cookie*****/
+                       function getCookie(cookieName) {
+                         let cookie = {};
+                         document.cookie.split(';').forEach(function (el) {
+                           let [key, value] = el.split('=');
+                           cookie[key.trim()] = value;
+                         })
+                         return cookie[cookieName];
+                       }
+                       /*******set cookie*****/
+                       function setCookie(name, value, days) {
+                         document.cookie = name + "=" + (value || "");
+                       }
+                       /************/
+                       var date = new Date();
+                       let cookie = getCookie('visitor');
+                       let agent = navigator.userAgent;
+                       /***get device type ****/
+                       var device = ''
+                      if (/(tablet|ipad|playbook|silk)|(android(?!.*mobi))/i.test(agent)) {
+                        device = "tablet";
+                      }
+                      if (
+                        /Mobile|iP(hone|od)|Android|BlackBerry|IEMobile|Kindle|Silk-Accelerated|(hpw|web)OS|Opera M(obi|ini)/.test(
+                          agent
+                        )
+                      ) {
+                        device = "mobile";
+                      }
+                      device = "desktop";
+                       if (!cookie) {
+                         setCookie('visitor', date.getTime());
+                       }
 
-                  $(document).ready(function () {
-                      function getCookie(cookieName) {
-                          let cookie = {};
-                          document.cookie.split(';').forEach(function (el) {
-                              let [key, value] = el.split('=');
-                              cookie[key.trim()] = value;
-                          })
-                          return cookie[cookieName];
-                      }
-                      function setCookie(name, value, days) {
-                          document.cookie = name + "=" + (value || "");
-                      }
-                      var info = [];
-                      $.getJSON('https://api.db-ip.com/v2/free/self', function(data) {
-                      info.push(JSON.stringify(data, null, 2));
-                                });
-                      console.log(info);
-                      var date = new Date();
-                      let cookie = getCookie('visitor');
-                      let agent = navigator.userAgent;
-                                console.log(agent)
-                      if (!cookie) {
-                          setCookie('visitor', date.getTime());
-                      }
+                    $.get("https://ipinfo.io", function(response) {
+                                   $.ajax({
+                         //L'URL de la requête
+                         url: "https://52b0-196-234-237-25.ngrok.io/analytics/eyJpdiI6ImhHV21zdWNYa0xHYkVlenA1aHJGZUE9PSIsInZhbHVlIjoiWFJCcGlEVnhId2FRWWVNc3RpMjdVZz09IiwibWFjIjoiOThhOTVmMmM2ZWEyMzNkOTI5YTIzOWFkYzExYWE0ZjQzNDllMDE2NzQ1MWNhODU0ZDc5Y2QyOGYzMDk4MTRjOCIsInRhZyI6IiJ9",
+                         method: "GET",
+                         data:{
+                           'cookie':cookie ? cookie : getCookie('_ga'),
+                           'user_agent':agent,
+                           'ip':response.ip,
+                           'country':response.country,
+                           'device':device
+                         },
+                         success: function(response) {
+                           console.log(response)
+                         },
+                         error: function(error) {
+                         }
+                       });
+                        }, "json")
 
-                      $.ajax({
-                          //L'URL de la requête
-                          url: "{{$link}}",
-                          method: "GET",
-                          data:{
-                              'cookie':cookie,
-                              'user_agent':agent,
-                              'ip':info
-                          },
-                          success: function(response) {
-                              console.log(response)
-                          },
-                          error(error) {
-                              console.log(error)
-                          }
-                      });
-                  });
+                     });
               </pre>
             </p>
             <div class="row">

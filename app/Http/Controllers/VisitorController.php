@@ -31,19 +31,20 @@ class VisitorController extends Controller
             $data = Visitor::where('user_id', '=', Auth::id())->get();
             return Datatables::of($data)
                 ->addIndexColumn()
+                ->editColumn('created_at', function ($query) {
+                    if (!$query->created_at) return '';
+                    $dTime = strtotime($query->created_at);
+                    return date("Y-m-d H:i:s", $dTime);
+                })
                 ->addColumn('action', function ($row) {
-                    $btn = ' <button type="button" id="' . $row->id . '"  class="btn btn-sm btn-purple edit">
-                                <span class="material-icons">
-                                    update
-                                </span>
-                            </button>';
-                    $btn .= ' <button type="button" id="' . $row->id . '"  class="btn btn-sm btn-purple edit">
+                    $btn = ' <button type="button" id="' . $row->id . '"  class="btn btn-sm btn-danger edit">
                                 <span class="material-icons">
                                     delete
                                 </span>
                             </button>';
                     return $btn;
-                })->make(true);
+                })
+                ->make(true);
         }
         return view('visitors.visitor');
     }

@@ -16,9 +16,12 @@ class CreateVisitorsTable extends Migration
         Schema::create('visitors', function (Blueprint $table) {
             $table->id();
             $table->string('user_agent');
+            $table->string('browser');
             $table->string('ip');
             $table->string('device');
             $table->string('country');
+            $table->string('path');
+            $table->string('visitor');
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')
                 ->references('id')->on('users')

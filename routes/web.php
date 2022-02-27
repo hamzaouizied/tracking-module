@@ -17,11 +17,19 @@ use App\Http\Controllers\TrackingController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/dashboard');
 });
-
+//Auth
 Auth::routes();
-Route::get('/home',                   [HomeController::class,     'index'])->name('home');
+//dashboard
+Route::get('/dashboard',              [HomeController::class,     'index'])->name('home');
+//listing visitor
 Route::get('/visitors',               [VisitorController::class,  'index'])->name('visitors');
+//delete visitor
+Route::post('delete/visitor',         [VisitorController::class,  'destroy'])->name('destroy');
+//listing details visitor
+Route::get('details/visitors',        [VisitorController::class,  'index'])->name('details');
+//index link for tracking
 Route::get('/tracking',               [TrackingController::class, 'index'])->name('tracking');
+//link to track website
 Route::get('/analytics/{tracking?}',  [TrackingController::class, 'getDataFromLink']);

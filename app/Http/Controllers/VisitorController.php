@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Crypt;
 use DataTables;
 
 
@@ -37,15 +36,25 @@ class VisitorController extends Controller
                     return date("Y-m-d H:i:s", $dTime);
                 })
                 ->addColumn('action', function ($row) {
-                    $btn = ' <button type="button" id="' . $row->id . '"  class="btn btn-sm btn-danger edit">
-                                <span class="material-icons">
-                                    delete
-                                </span>
+                    $btn = ' <button type="button" id="' . $row->id . '"  class="btn btn-sm btn-danger delete">
+                                <span class="material-icons">delete</span>
                             </button>';
                     return $btn;
                 })
                 ->make(true);
         }
         return view('visitors.visitor');
+    }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function destroy(Request $request)
+    {
+        Visitor::query()->where('id', '=', $request->id)->delete();
+        return response()->json([
+           'message' => 'successfully deleted.'
+        ], 200);
     }
 }

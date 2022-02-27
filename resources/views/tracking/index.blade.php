@@ -16,7 +16,7 @@
             <p class="card-text">Usage</p>
             <p class="card-text">
               <pre>
-                   $(document).ready(function () {
+           $(document).ready(function () {
                 /*******get cookie*****/
                 function getCookie(cookieName) {
                     let cookie = {};

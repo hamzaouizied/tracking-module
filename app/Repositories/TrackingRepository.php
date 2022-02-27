@@ -21,9 +21,12 @@ class TrackingRepository implements TrackingInterface
         ]);
     }
 
+    /**
+     * @param $request
+     * @return \Illuminate\Http\JsonResponse|mixed
+     */
     public function getDataFromLink($request)
     {
-
         Visitor::create([
             'user_agent' => $request->user_agent,
             'browser'    => $request->browser,

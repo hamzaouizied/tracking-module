@@ -22,6 +22,7 @@ class CreateVisitorsTable extends Migration
             $table->string('country');
             $table->string('path');
             $table->string('visitor');
+            $table->softDeletes();
             $table->bigInteger('user_id')->unsigned()->index();
             $table->foreign('user_id')
                 ->references('id')->on('users')

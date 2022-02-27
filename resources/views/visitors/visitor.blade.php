@@ -7,6 +7,10 @@
   div#visitor-table_filter {
     float: right;
   }
+  span.material-icons {
+    margin-top: 0em!important;
+    margin-bottom: 0em!important;
+  }
 </style>
 @section('content')
   <div class="content">

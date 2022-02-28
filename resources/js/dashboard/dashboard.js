@@ -162,7 +162,7 @@ new Chart(ctx, {
             },
             title: {
                 display: true,
-                text: 'Total Nb Visits + Nb Unique Visits',
+                text: 'Total Nb Visits + Nb Unique Visits By Browser',
                 fontFamily:numberFont,
                 fontColor:lightPrimaryColor,
                 fontStyle:'bold'
@@ -263,7 +263,7 @@ new Chart(ctx, {
                 },
                 title: {
                     display: true,
-                    text: 'Growth',
+                    text: 'Evolution of visits and unique visits during the last 7 days',
                     fontFamily:numberFont,
                     fontColor:lightPrimaryColor,
                     fontStyle:'bold'
@@ -278,14 +278,6 @@ new Chart(ctx, {
                         return value;
                     },
                     color: numberColor,
-                    font: function(context) {
-                        var width = context.chart.width;
-                        var responsiveSize = Math.round(width / 30);
-                        return {
-                            size: responsiveSize,
-                            family:numberFont
-                        };
-                    },
                 },
             },
             scales: {

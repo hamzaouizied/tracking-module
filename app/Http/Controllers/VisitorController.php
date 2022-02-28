@@ -48,6 +48,32 @@ class VisitorController extends Controller
 
     /**
      * @param Request $request
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
+     */
+    public function indexVisitMade(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Visitor::where('user_id', '=', Auth::id())->get();
+            return Datatables::of($data)
+                ->addIndexColumn()
+                ->editColumn('created_at', function ($query) {
+                    if (!$query->created_at) return '';
+                    $dTime = strtotime($query->created_at);
+                    return date("Y-m-d H:i:s", $dTime);
+                })
+                ->addColumn('action', function ($row) {
+                    $btn = ' <button type="button" id="' . $row->id . '"  class="btn btn-sm btn-danger delete">
+                                <span class="material-icons">delete</span>
+                            </button>';
+                    return $btn;
+                })
+                ->make(true);
+        }
+        return view('visitors.details');
+    }
+
+    /**
+     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
     public function destroy(Request $request)

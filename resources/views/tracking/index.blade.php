@@ -13,6 +13,11 @@
         <div class="card" style="height:100%">
           <div class="card-body">
             <h5 class="card-title">Tracking Link</h5>
+              <div class="row">
+                  <div class="col-lg-12">
+                      <input type="text" class="form-control" value="{{$link}}" readonly>
+                  </div>
+              </div>
             <p class="card-text">Usage</p>
             <p class="card-text">
               <pre>
@@ -95,11 +100,6 @@
             });
               </pre>
             </p>
-            <div class="row">
-              <div class="col-lg-12">
-                <input type="text" class="form-control" value="{{$link}}" readonly> <button type="button" class="btn btn-success">Copy</button>
-              </div>
-            </div>
         </div>
       </div>
     </div>

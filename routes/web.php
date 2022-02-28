@@ -28,7 +28,7 @@ Route::get('/visitors',               [VisitorController::class,  'index'])->nam
 //delete visitor
 Route::post('delete/visitor',         [VisitorController::class,  'destroy'])->name('destroy');
 //listing details visitor
-Route::get('details/visitors',        [VisitorController::class,  'index'])->name('details');
+Route::get('visit-made',              [VisitorController::class,  'indexVisitMade'])->name('visit-made');
 //index link for tracking
 Route::get('/tracking',               [TrackingController::class, 'index'])->name('tracking');
 //link to track website
